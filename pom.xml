@@ -11,8 +11,13 @@
     <groupId>com.demo</groupId>
     <artifactId>BookingSystem</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>BookingSystem</name>
     <description>BookingSystem</description>
+    <modules>
+        <module>services</module>
+        <module>libs</module>
+    </modules>
     <properties>
         <java.version>17</java.version>
     </properties>

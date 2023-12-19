@@ -1,13 +1,12 @@
-package com.demo.bookingsystem;
+package com.demo.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BookingSystemApplication {
-
+public class AuthServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(BookingSystemApplication.class, args);
+        SpringApplication.run(AuthServiceApplication.class, args);
     }
 
 }
