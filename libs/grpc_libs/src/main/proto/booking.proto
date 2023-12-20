@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.demo.grpc.proto;
+
+option java_multiple_files = true;
+
+import "booking_enum.proto";
+import "booking_reply.proto";
+
+message BookingMessage {
+  int32 bookingId = 1;
+  int32 roomId = 2;
+  int32 guestId = 3;
+  string guestLastname = 4;
+  string guestFirstname = 5;
+  string checkinTime = 6;
+  string checkoutTime = 7;
+  bool active = 8;
+  BookingType type = 9;
+}
+
+service BookingService {
+  rpc Send (BookingMessage) returns (BookingReply);
+}

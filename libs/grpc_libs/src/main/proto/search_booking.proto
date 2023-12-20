@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.demo.grpc.proto;
+
+option java_multiple_files = true;
+
+import "booking_reply.proto";
+
+message SearchMessageRequest {
+  int32 guestId = 1;
+  int32 page = 2;
+  int32 size = 3;
+  bool isActive = 4;
+}
+
+message SearchMessageResponse {
+  repeated BookingReply bookings = 1;
+  int32 page = 2;
+  int32 size = 3;
+}
+
+service SearchService {
+  rpc Search (SearchMessageRequest) returns (SearchMessageResponse);
+}

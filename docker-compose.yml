@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db_identity:
+    container_name: db_identity
+    image: postgres
+    volumes:
+      - db-identity-data:/var/lib/postgresql/data
+      - ./db/init-identity-db.sql:/docker-entrypoint-initdb.d/init-identity-db.sql
+    environment:
+      - POSTGRES_IDENTITY_USER
+      - POSTGRES_IDENTITY_PASSWORD
+      - POSTGRES_IDENTITY_DB
+    ports:
+      - "5433:5432"
+    expose:
+      - "5433"
+  db_booking_hotel:
+    container_name: db_booking
+    image: postgres
+    volumes:
+      - db-booking-data:/var/lib/postgresql/data
+      - ./db/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    environment:
+      - POSTGRES_BOOKING_USER
+      - POSTGRES_BOOKING_PASSWORD
+      - POSTGRES_BOOKING_DB
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "16543:80"
+volumes:
+  db-booking-data:
+  db-identity-data:

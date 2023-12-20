@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package com.demo.grpc.proto;
+
+option java_multiple_files = true;
+
+import "booking_enum.proto";
+
+message BookingReply {
+  int32 bookingId = 1;
+  int32 roomId = 2;
+  string roomName = 3;
+  int32 guestId = 4;
+  string guestLastname = 5;
+  string guestFirstname = 6;
+  string checkinTime = 7;
+  string checkoutTime = 8;
+  string createdAt = 9;
+  string updateAt = 10;
+  bool active = 11;
+  BookingType type = 12;
+  BookingStatus status = 13;
+}

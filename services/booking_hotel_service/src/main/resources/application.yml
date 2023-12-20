@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: booking_hotel_service
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_DB_SERVER_ADDRESS:localhost}:${POSTGRES_DB_SERVER_PORT:5432}/booking-db
+    username: ${POSTGRES_USER:username}
+    password: ${POSTGRES_PASSWORD:password}
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+
+grpc:
+  server:
+    port:  ${SERVICE_PORT:9091}
+
