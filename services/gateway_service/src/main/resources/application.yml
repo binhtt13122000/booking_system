@@ -9,3 +9,19 @@ grpc:
   auth:
     host: localhost
     port: 9092
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+swagger:
+  contact-name: Binh Truong
+  contact-mail: binhtt.work@gmail.com
+  contact-url: https://github.com/binhtt13122000
+  app-name: MVP Hotel Booking API
+  app-description: ""
+  app-version: 1.0.0
+
+jwt:
+  secret: 123453434sdasdzxZxZxsdasdsxXzXZXzmx>zxm.zLXXCMZXCZMXLAWDLMMXCMZXCMZX123132

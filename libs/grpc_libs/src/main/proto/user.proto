@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package com.demo.grpc.proto;
+
+option java_multiple_files = true;
+
+import "common_enum.proto";
+
+message UserMessageRequest {
+  string email = 1;
+  string password = 2;
+  ActionType type = 3;
+}
+
+message UserMessageResponse {
+  string token = 1;
+  int32 code = 2;
+  string desc = 3;
+  Status status = 4;
+}
+
+enum ActionType {
+  UNKNOWN_ACTION = 0;
+  LOGIN_ACTION = 1;
+  REGISTER_ACTION = 2;
+  CHECK_EMAIL = 3;
+}
+
+service UserService {
+  rpc UserSend (UserMessageRequest) returns (UserMessageResponse);
+}

@@ -107,11 +107,26 @@ public interface BookingReplyOrBuilder extends
   com.demo.grpc.proto.BookingType getType();
 
   /**
-   * <code>.com.demo.grpc.proto.BookingStatus status = 13;</code>
+   * <code>.com.demo.grpc.proto.Status status = 13;</code>
    */
   int getStatusValue();
   /**
-   * <code>.com.demo.grpc.proto.BookingStatus status = 13;</code>
+   * <code>.com.demo.grpc.proto.Status status = 13;</code>
    */
-  com.demo.grpc.proto.BookingStatus getStatus();
+  com.demo.grpc.proto.Status getStatus();
+
+  /**
+   * <code>int32 code = 14;</code>
+   */
+  int getCode();
+
+  /**
+   * <code>string desc = 15;</code>
+   */
+  java.lang.String getDesc();
+  /**
+   * <code>string desc = 15;</code>
+   */
+  com.google.protobuf.ByteString
+      getDescBytes();
 }

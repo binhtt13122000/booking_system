@@ -29,16 +29,16 @@ public final class Booking {
   static {
     java.lang.String[] descriptorData = {
       "\n\rbooking.proto\022\023com.demo.grpc.proto\032\022bo" +
-      "oking_enum.proto\032\023booking_reply.proto\"\336\001" +
-      "\n\016BookingMessage\022\021\n\tbookingId\030\001 \001(\005\022\016\n\006r" +
-      "oomId\030\002 \001(\005\022\017\n\007guestId\030\003 \001(\005\022\025\n\rguestLas" +
-      "tname\030\004 \001(\t\022\026\n\016guestFirstname\030\005 \001(\t\022\023\n\013c" +
-      "heckinTime\030\006 \001(\t\022\024\n\014checkoutTime\030\007 \001(\t\022\016" +
-      "\n\006active\030\010 \001(\010\022.\n\004type\030\t \001(\0162 .com.demo." +
-      "grpc.proto.BookingType2`\n\016BookingService" +
-      "\022N\n\004Send\022#.com.demo.grpc.proto.BookingMe" +
-      "ssage\032!.com.demo.grpc.proto.BookingReply",
-      "B\002P\001b\006proto3"
+      "oking_enum.proto\032\021common_enum.proto\032\023boo" +
+      "king_reply.proto\"\336\001\n\016BookingMessage\022\021\n\tb" +
+      "ookingId\030\001 \001(\005\022\016\n\006roomId\030\002 \001(\005\022\017\n\007guestI" +
+      "d\030\003 \001(\005\022\025\n\rguestLastname\030\004 \001(\t\022\026\n\016guestF" +
+      "irstname\030\005 \001(\t\022\023\n\013checkinTime\030\006 \001(\t\022\024\n\014c" +
+      "heckoutTime\030\007 \001(\t\022\016\n\006active\030\010 \001(\010\022.\n\004typ" +
+      "e\030\t \001(\0162 .com.demo.grpc.proto.BookingTyp" +
+      "e2`\n\016BookingService\022N\n\004Send\022#.com.demo.g" +
+      "rpc.proto.BookingMessage\032!.com.demo.grpc",
+      ".proto.BookingReplyB\002P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -52,6 +52,7 @@ public final class Booking {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.demo.grpc.proto.BookingEnum.getDescriptor(),
+          com.demo.grpc.proto.CommonEnum.getDescriptor(),
           com.demo.grpc.proto.BookingReplyOuterClass.getDescriptor(),
         }, assigner);
     internal_static_com_demo_grpc_proto_BookingMessage_descriptor =
@@ -61,6 +62,7 @@ public final class Booking {
         internal_static_com_demo_grpc_proto_BookingMessage_descriptor,
         new java.lang.String[] { "BookingId", "RoomId", "GuestId", "GuestLastname", "GuestFirstname", "CheckinTime", "CheckoutTime", "Active", "Type", });
     com.demo.grpc.proto.BookingEnum.getDescriptor();
+    com.demo.grpc.proto.CommonEnum.getDescriptor();
     com.demo.grpc.proto.BookingReplyOuterClass.getDescriptor();
   }
 

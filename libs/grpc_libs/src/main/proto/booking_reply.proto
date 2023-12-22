@@ -5,6 +5,7 @@ package com.demo.grpc.proto;
 option java_multiple_files = true;
 
 import "booking_enum.proto";
+import "common_enum.proto";
 
 message BookingReply {
   int32 bookingId = 1;
@@ -19,5 +20,7 @@ message BookingReply {
   string updateAt = 10;
   bool active = 11;
   BookingType type = 12;
-  BookingStatus status = 13;
+  Status status = 13;
+  int32 code = 14;
+  string desc = 15;
 }

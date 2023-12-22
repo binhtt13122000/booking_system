@@ -1,10 +1,9 @@
 package com.demo.gateway.dto;
 
-import com.demo.grpc.proto.BookingStatus;
+import com.demo.grpc.proto.Status;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,6 +18,11 @@ public class BookingResponseDto {
     private String checkoutTime;
     private String createdAt;
     private String updateAt;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Boolean active;
-    private BookingStatus status;
+    private Status status;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private int code;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String desc;
 }

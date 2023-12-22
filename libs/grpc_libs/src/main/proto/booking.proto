@@ -5,6 +5,7 @@ package com.demo.grpc.proto;
 option java_multiple_files = true;
 
 import "booking_enum.proto";
+import "common_enum.proto";
 import "booking_reply.proto";
 
 message BookingMessage {

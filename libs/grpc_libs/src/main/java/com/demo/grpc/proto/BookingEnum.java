@@ -26,8 +26,7 @@ public final class BookingEnum {
       "\n\022booking_enum.proto\022\023com.demo.grpc.prot" +
       "o*P\n\013BookingType\022\020\n\014UNKNOWN_TYPE\020\000\022\n\n\006UP" +
       "DATE\020\001\022\016\n\nVIEW_BY_ID\020\002\022\n\n\006CANCEL\020\003\022\007\n\003AD" +
-      "D\020\004*4\n\rBookingStatus\022\013\n\007UNKNOWN\020\000\022\013\n\007SUC" +
-      "CESS\020\001\022\t\n\005ERROR\020\002B\002P\001b\006proto3"
+      "D\020\004B\002P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

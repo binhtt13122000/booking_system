@@ -1,19 +1,23 @@
 package com.demo.gateway.controllers;
 
+import com.demo.common.Common;
 import com.demo.gateway.dto.BookingResponseDto;
 import com.demo.gateway.dto.CreateBookingDto;
 import com.demo.gateway.dto.SearchResponseDto;
 import com.demo.gateway.dto.UpdateBookingDto;
+import com.demo.gateway.dto.ResponseDto;
 import com.demo.gateway.services.BookingService;
 import com.demo.grpc.proto.BookingMessage;
-import com.demo.grpc.proto.BookingStatus;
+import com.demo.grpc.proto.Status;
 import com.demo.grpc.proto.BookingType;
 import com.demo.grpc.proto.SearchMessageRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,12 +25,13 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api")
 @Slf4j
+@Secured({Common.USER})
 public class BookingController {
     @Autowired
     private BookingService bookingService;
 
     @GetMapping("/v1/guest/{id}/bookings")
-    public ResponseEntity<SearchResponseDto> getBookings(
+    public ResponseEntity<ResponseDto> getBookings(
             @PathVariable int id,
             @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "size", defaultValue = "5") int size,
@@ -39,11 +44,11 @@ public class BookingController {
                 .setIsActive(isActive)
                 .build();
         SearchResponseDto searchResponseDto = bookingService.search(searchMessageRequest);
-        return ResponseEntity.ok(searchResponseDto);
+        return ResponseDto.toResponseEntity(searchResponseDto);
     }
 
     @PostMapping("/v1/booking")
-    public ResponseEntity<BookingResponseDto> createBooking(@RequestBody @Valid CreateBookingDto request) throws InvalidProtocolBufferException, JsonProcessingException {
+    public ResponseEntity<ResponseDto> createBooking(@RequestBody @Valid CreateBookingDto request) throws InvalidProtocolBufferException, JsonProcessingException {
         BookingMessage bookingMessage = BookingMessage
                 .newBuilder()
                 .setRoomId(request.getRoomId())
@@ -54,14 +59,14 @@ public class BookingController {
                 .build();
         var createResponse = bookingService.proceed(bookingMessage);
         
-        if(createResponse.getStatus().equals(BookingStatus.SUCCESS)) {
-            return ResponseEntity.ok(createResponse);
+        if(createResponse.getStatus().equals(Status.SUCCESS)) {
+            return ResponseDto.toResponseEntity(createResponse);
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseDto.toResponseEntity(HttpStatus.BAD_REQUEST, createResponse.getCode(), createResponse.getDesc());
     }
 
     @GetMapping("/v1/booking/{id}")
-    public ResponseEntity<BookingResponseDto> getBooking(@PathVariable int id) throws InvalidProtocolBufferException, JsonProcessingException {
+    public ResponseEntity<ResponseDto> getBooking(@PathVariable int id) throws InvalidProtocolBufferException, JsonProcessingException {
         BookingMessage bookingMessage = BookingMessage
                 .newBuilder()
                 .setBookingId(id)
@@ -69,14 +74,14 @@ public class BookingController {
                 .build();
         BookingResponseDto bookingResponseDto = bookingService.proceed(bookingMessage);
         
-        if(bookingResponseDto.getStatus().equals(BookingStatus.SUCCESS)) {
-            return ResponseEntity.ok(bookingResponseDto);
+        if(bookingResponseDto.getStatus().equals(Status.SUCCESS)) {
+            return ResponseDto.toResponseEntity(bookingResponseDto);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseDto.toResponseEntity(HttpStatus.NOT_FOUND, bookingResponseDto.getCode(), bookingResponseDto.getDesc());
     }
 
     @PutMapping("/v1/booking")
-    public ResponseEntity<BookingResponseDto> updateBooking(@RequestBody @Valid UpdateBookingDto request) throws InvalidProtocolBufferException, JsonProcessingException {
+    public ResponseEntity<ResponseDto> updateBooking(@RequestBody @Valid UpdateBookingDto request) throws InvalidProtocolBufferException, JsonProcessingException {
         BookingMessage bookingMessage = BookingMessage
                 .newBuilder()
                 .setBookingId(request.getBookingId())
@@ -88,14 +93,13 @@ public class BookingController {
                 .build();
         BookingResponseDto updateBookingResponseDto = bookingService.proceed(bookingMessage);
 
-        if(updateBookingResponseDto.getStatus().equals(BookingStatus.SUCCESS)) {
-            return ResponseEntity.ok(updateBookingResponseDto);
+        if(updateBookingResponseDto.getStatus().equals(Status.SUCCESS)) {
+            return ResponseDto.toResponseEntity(updateBookingResponseDto);
         }
-        return ResponseEntity.badRequest().build();
-    }
+        return ResponseDto.toResponseEntity(HttpStatus.BAD_GATEWAY, updateBookingResponseDto.getCode(), updateBookingResponseDto.getDesc());}
 
     @PutMapping("/v1/booking/{id}")
-    public ResponseEntity<BookingResponseDto> cancelBooking(@PathVariable int id) throws InvalidProtocolBufferException, JsonProcessingException {
+    public ResponseEntity<ResponseDto> cancelBooking(@PathVariable int id) throws InvalidProtocolBufferException, JsonProcessingException {
         BookingMessage bookingMessage = BookingMessage
                 .newBuilder()
                 .setBookingId(id)
@@ -103,9 +107,9 @@ public class BookingController {
                 .build();
         BookingResponseDto cancelBookingResponseDto = bookingService.proceed(bookingMessage);
 
-        if(cancelBookingResponseDto.getStatus().equals(BookingStatus.SUCCESS)) {
-            return ResponseEntity.ok(cancelBookingResponseDto);
+        if(cancelBookingResponseDto.getStatus().equals(Status.SUCCESS)) {
+            return ResponseDto.toResponseEntity(cancelBookingResponseDto);
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseDto.toResponseEntity(HttpStatus.BAD_GATEWAY, cancelBookingResponseDto.getCode(), cancelBookingResponseDto.getDesc());
     }
 }

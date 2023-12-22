@@ -29,15 +29,16 @@ public final class BookingReplyOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\023booking_reply.proto\022\023com.demo.grpc.pro" +
-      "to\032\022booking_enum.proto\"\307\002\n\014BookingReply\022" +
-      "\021\n\tbookingId\030\001 \001(\005\022\016\n\006roomId\030\002 \001(\005\022\020\n\010ro" +
-      "omName\030\003 \001(\t\022\017\n\007guestId\030\004 \001(\005\022\025\n\rguestLa" +
-      "stname\030\005 \001(\t\022\026\n\016guestFirstname\030\006 \001(\t\022\023\n\013" +
-      "checkinTime\030\007 \001(\t\022\024\n\014checkoutTime\030\010 \001(\t\022" +
-      "\021\n\tcreatedAt\030\t \001(\t\022\020\n\010updateAt\030\n \001(\t\022\016\n\006" +
-      "active\030\013 \001(\010\022.\n\004type\030\014 \001(\0162 .com.demo.gr" +
-      "pc.proto.BookingType\0222\n\006status\030\r \001(\0162\".c" +
-      "om.demo.grpc.proto.BookingStatusB\002P\001b\006pr",
+      "to\032\022booking_enum.proto\032\021common_enum.prot" +
+      "o\"\334\002\n\014BookingReply\022\021\n\tbookingId\030\001 \001(\005\022\016\n" +
+      "\006roomId\030\002 \001(\005\022\020\n\010roomName\030\003 \001(\t\022\017\n\007guest" +
+      "Id\030\004 \001(\005\022\025\n\rguestLastname\030\005 \001(\t\022\026\n\016guest" +
+      "Firstname\030\006 \001(\t\022\023\n\013checkinTime\030\007 \001(\t\022\024\n\014" +
+      "checkoutTime\030\010 \001(\t\022\021\n\tcreatedAt\030\t \001(\t\022\020\n" +
+      "\010updateAt\030\n \001(\t\022\016\n\006active\030\013 \001(\010\022.\n\004type\030" +
+      "\014 \001(\0162 .com.demo.grpc.proto.BookingType\022" +
+      "+\n\006status\030\r \001(\0162\033.com.demo.grpc.proto.St",
+      "atus\022\014\n\004code\030\016 \001(\005\022\014\n\004desc\030\017 \001(\tB\002P\001b\006pr" +
       "oto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
@@ -52,14 +53,16 @@ public final class BookingReplyOuterClass {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.demo.grpc.proto.BookingEnum.getDescriptor(),
+          com.demo.grpc.proto.CommonEnum.getDescriptor(),
         }, assigner);
     internal_static_com_demo_grpc_proto_BookingReply_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_com_demo_grpc_proto_BookingReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_demo_grpc_proto_BookingReply_descriptor,
-        new java.lang.String[] { "BookingId", "RoomId", "RoomName", "GuestId", "GuestLastname", "GuestFirstname", "CheckinTime", "CheckoutTime", "CreatedAt", "UpdateAt", "Active", "Type", "Status", });
+        new java.lang.String[] { "BookingId", "RoomId", "RoomName", "GuestId", "GuestLastname", "GuestFirstname", "CheckinTime", "CheckoutTime", "CreatedAt", "UpdateAt", "Active", "Type", "Status", "Code", "Desc", });
     com.demo.grpc.proto.BookingEnum.getDescriptor();
+    com.demo.grpc.proto.CommonEnum.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

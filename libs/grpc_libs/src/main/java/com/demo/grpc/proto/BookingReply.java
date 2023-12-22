@@ -28,6 +28,8 @@ public  final class BookingReply extends
     active_ = false;
     type_ = 0;
     status_ = 0;
+    code_ = 0;
+    desc_ = "";
   }
 
   @java.lang.Override
@@ -127,6 +129,17 @@ public  final class BookingReply extends
             int rawValue = input.readEnum();
 
             status_ = rawValue;
+            break;
+          }
+          case 112: {
+
+            code_ = input.readInt32();
+            break;
+          }
+          case 122: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            desc_ = s;
             break;
           }
         }
@@ -445,17 +458,60 @@ public  final class BookingReply extends
   public static final int STATUS_FIELD_NUMBER = 13;
   private int status_;
   /**
-   * <code>.com.demo.grpc.proto.BookingStatus status = 13;</code>
+   * <code>.com.demo.grpc.proto.Status status = 13;</code>
    */
   public int getStatusValue() {
     return status_;
   }
   /**
-   * <code>.com.demo.grpc.proto.BookingStatus status = 13;</code>
+   * <code>.com.demo.grpc.proto.Status status = 13;</code>
    */
-  public com.demo.grpc.proto.BookingStatus getStatus() {
-    com.demo.grpc.proto.BookingStatus result = com.demo.grpc.proto.BookingStatus.valueOf(status_);
-    return result == null ? com.demo.grpc.proto.BookingStatus.UNRECOGNIZED : result;
+  public com.demo.grpc.proto.Status getStatus() {
+    com.demo.grpc.proto.Status result = com.demo.grpc.proto.Status.valueOf(status_);
+    return result == null ? com.demo.grpc.proto.Status.UNRECOGNIZED : result;
+  }
+
+  public static final int CODE_FIELD_NUMBER = 14;
+  private int code_;
+  /**
+   * <code>int32 code = 14;</code>
+   */
+  public int getCode() {
+    return code_;
+  }
+
+  public static final int DESC_FIELD_NUMBER = 15;
+  private volatile java.lang.Object desc_;
+  /**
+   * <code>string desc = 15;</code>
+   */
+  public java.lang.String getDesc() {
+    java.lang.Object ref = desc_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      desc_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string desc = 15;</code>
+   */
+  public com.google.protobuf.ByteString
+      getDescBytes() {
+    java.lang.Object ref = desc_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      desc_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -506,8 +562,14 @@ public  final class BookingReply extends
     if (type_ != com.demo.grpc.proto.BookingType.UNKNOWN_TYPE.getNumber()) {
       output.writeEnum(12, type_);
     }
-    if (status_ != com.demo.grpc.proto.BookingStatus.UNKNOWN.getNumber()) {
+    if (status_ != com.demo.grpc.proto.Status.UNKNOWN.getNumber()) {
       output.writeEnum(13, status_);
+    }
+    if (code_ != 0) {
+      output.writeInt32(14, code_);
+    }
+    if (!getDescBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 15, desc_);
     }
   }
 
@@ -557,9 +619,16 @@ public  final class BookingReply extends
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(12, type_);
     }
-    if (status_ != com.demo.grpc.proto.BookingStatus.UNKNOWN.getNumber()) {
+    if (status_ != com.demo.grpc.proto.Status.UNKNOWN.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(13, status_);
+    }
+    if (code_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(14, code_);
+    }
+    if (!getDescBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(15, desc_);
     }
     memoizedSize = size;
     return size;
@@ -601,6 +670,10 @@ public  final class BookingReply extends
         == other.getActive());
     result = result && type_ == other.type_;
     result = result && status_ == other.status_;
+    result = result && (getCode()
+        == other.getCode());
+    result = result && getDesc()
+        .equals(other.getDesc());
     return result;
   }
 
@@ -638,6 +711,10 @@ public  final class BookingReply extends
     hash = (53 * hash) + type_;
     hash = (37 * hash) + STATUS_FIELD_NUMBER;
     hash = (53 * hash) + status_;
+    hash = (37 * hash) + CODE_FIELD_NUMBER;
+    hash = (53 * hash) + getCode();
+    hash = (37 * hash) + DESC_FIELD_NUMBER;
+    hash = (53 * hash) + getDesc().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -793,6 +870,10 @@ public  final class BookingReply extends
 
       status_ = 0;
 
+      code_ = 0;
+
+      desc_ = "";
+
       return this;
     }
 
@@ -828,6 +909,8 @@ public  final class BookingReply extends
       result.active_ = active_;
       result.type_ = type_;
       result.status_ = status_;
+      result.code_ = code_;
+      result.desc_ = desc_;
       onBuilt();
       return result;
     }
@@ -914,6 +997,13 @@ public  final class BookingReply extends
       }
       if (other.status_ != 0) {
         setStatusValue(other.getStatusValue());
+      }
+      if (other.getCode() != 0) {
+        setCode(other.getCode());
+      }
+      if (!other.getDesc().isEmpty()) {
+        desc_ = other.desc_;
+        onChanged();
       }
       onChanged();
       return this;
@@ -1574,13 +1664,13 @@ public  final class BookingReply extends
 
     private int status_ = 0;
     /**
-     * <code>.com.demo.grpc.proto.BookingStatus status = 13;</code>
+     * <code>.com.demo.grpc.proto.Status status = 13;</code>
      */
     public int getStatusValue() {
       return status_;
     }
     /**
-     * <code>.com.demo.grpc.proto.BookingStatus status = 13;</code>
+     * <code>.com.demo.grpc.proto.Status status = 13;</code>
      */
     public Builder setStatusValue(int value) {
       status_ = value;
@@ -1588,16 +1678,16 @@ public  final class BookingReply extends
       return this;
     }
     /**
-     * <code>.com.demo.grpc.proto.BookingStatus status = 13;</code>
+     * <code>.com.demo.grpc.proto.Status status = 13;</code>
      */
-    public com.demo.grpc.proto.BookingStatus getStatus() {
-      com.demo.grpc.proto.BookingStatus result = com.demo.grpc.proto.BookingStatus.valueOf(status_);
-      return result == null ? com.demo.grpc.proto.BookingStatus.UNRECOGNIZED : result;
+    public com.demo.grpc.proto.Status getStatus() {
+      com.demo.grpc.proto.Status result = com.demo.grpc.proto.Status.valueOf(status_);
+      return result == null ? com.demo.grpc.proto.Status.UNRECOGNIZED : result;
     }
     /**
-     * <code>.com.demo.grpc.proto.BookingStatus status = 13;</code>
+     * <code>.com.demo.grpc.proto.Status status = 13;</code>
      */
-    public Builder setStatus(com.demo.grpc.proto.BookingStatus value) {
+    public Builder setStatus(com.demo.grpc.proto.Status value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1607,11 +1697,106 @@ public  final class BookingReply extends
       return this;
     }
     /**
-     * <code>.com.demo.grpc.proto.BookingStatus status = 13;</code>
+     * <code>.com.demo.grpc.proto.Status status = 13;</code>
      */
     public Builder clearStatus() {
       
       status_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private int code_ ;
+    /**
+     * <code>int32 code = 14;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+    /**
+     * <code>int32 code = 14;</code>
+     */
+    public Builder setCode(int value) {
+      
+      code_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 code = 14;</code>
+     */
+    public Builder clearCode() {
+      
+      code_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object desc_ = "";
+    /**
+     * <code>string desc = 15;</code>
+     */
+    public java.lang.String getDesc() {
+      java.lang.Object ref = desc_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        desc_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string desc = 15;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDescBytes() {
+      java.lang.Object ref = desc_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        desc_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string desc = 15;</code>
+     */
+    public Builder setDesc(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      desc_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string desc = 15;</code>
+     */
+    public Builder clearDesc() {
+      
+      desc_ = getDefaultInstance().getDesc();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string desc = 15;</code>
+     */
+    public Builder setDescBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      desc_ = value;
       onChanged();
       return this;
     }

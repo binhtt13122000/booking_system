@@ -1,10 +1,21 @@
 package com.demo.common;
 
-public class ErrorMessages {
-    public static final String NOT_NULL_AUTHOR_ID_ERROR_MESSAGE = "Author ID is required!";
-    public static final String NOT_NULL_ISBN_ERROR_MESSAGE = "Email is required!";
-    public static final String NOT_NULL_TITLE_ERROR_MESSAGE = "Title is required!";
+public enum ErrorMessages {
+    SUCCESS(0, "SUCCESS"),
+    ROOM_NOT_FOUND(1, "ROOM_NOT_FOUND"),
+    ROOM_NOT_AVAILABLE(2, "ROOM_NOT_AVAILABLE"),
+    BOOKING_NOT_FOUND(3, "BOOKING_NOT_FOUND"),
+    BOOKING_ALREADY_DEACTIVE(4, "BOOKING_ALREADY_DEACTIVE"),
+    EMAIL_IS_REGISTERED(5, "EMAIL_IS_REGISTERED"),
+    EMAIL_IS_NOT_REGISTERED(6, "EMAIL_IS_NOT_REGISTERED"),
+    PASS_WRONG(7, "PASS_WRONG");
 
-    public static final String NOT_FOUND = "Not found";
-    public static final String ERROR_FIELD = "error";
+
+    public int code;
+    public String desc;
+
+    private ErrorMessages(int code, String desc) {
+        this.code = code;
+        this.desc = desc;
+    }
 }

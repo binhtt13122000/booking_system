@@ -11,9 +11,3 @@ enum BookingType {
   CANCEL = 3;
   ADD = 4;
 }
-
-enum BookingStatus {
-  UNKNOWN = 0;
-  SUCCESS = 1;
-  ERROR = 2;
-}

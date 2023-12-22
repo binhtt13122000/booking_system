@@ -2,8 +2,7 @@ package com.demo.booking.services;
 
 import com.demo.booking.mapper.Mapper;
 import com.demo.common.JSONUtils;
-import com.demo.crud.models.Booking;
-import com.demo.crud.services.BookingService;
+import com.demo.crud.booking.models.Booking;
 import com.demo.grpc.proto.*;
 import com.google.protobuf.InvalidProtocolBufferException;
 import io.grpc.stub.StreamObserver;
@@ -30,7 +29,7 @@ public class SearchBookingGrpcServer extends SearchServiceGrpc.SearchServiceImpl
                             .newBuilder()
                             .setSize(request.getSize())
                             .setPage(request.getPage() + 1)
-                            .addAllBookings(bookings.stream().map(booking -> Mapper.convertToBookingReply(booking, true)).collect(Collectors.toList()))
+                            .addAllBookings(bookings.stream().map(Mapper::convertToBookingReply).collect(Collectors.toList()))
                             .build();
             log.info("Response: {}", JSONUtils.getRawDataFromGrpc(searchMessageResponse));
             responseObserver.onNext(searchMessageResponse);

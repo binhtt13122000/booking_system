@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: identity_service
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_DB_SERVER_ADDRESS:localhost}:${POSTGRES_DB_SERVER_PORT:5433}/identity-db
+    username: ${POSTGRES_USER:username}
+    password: ${POSTGRES_PASSWORD:password}
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+    metrics:
+      enabled: true
+
+grpc:
+  server:
+    port: 9092
+
+jwt:
+  secret: 123453434sdasdzxZxZxsdasdsxXzXZXzmx>zxm.zLXXCMZXCZMXLAWDLMMXCMZXCMZX123132
+  issuer: thanhbinh
+  audience: thanhbinh
+  expired: 864000000

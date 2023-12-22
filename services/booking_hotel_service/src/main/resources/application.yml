@@ -11,6 +11,11 @@ spring:
     hibernate:
       ddl-auto: none
 
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+
 grpc:
   server:
     port:  ${SERVICE_PORT:9091}
