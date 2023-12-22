@@ -4,6 +4,7 @@ import com.demo.gateway.dto.ResponseDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -25,6 +26,13 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
         ResponseDto re = new ResponseDto(HttpStatus.UNAUTHORIZED,
                 "Authentication failed at controller advice", null);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(re);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public final ResponseEntity<ResponseDto> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
+        ResponseDto re = new ResponseDto(HttpStatus.UNAUTHORIZED,
+                "Access Denied", null);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(re);
     }
 
