@@ -90,7 +90,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJpc3MiOiJ0aGFuaGJpbmgiLCJhdWQiOiJ0aGFuaGJpbmgiLCJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE3MDQwNzk4Mjl9.JzPscLd5hjZky5PcVXpYiBVdspbI4MBdyXSygVR7RqG92Rjq0wFbpnLO30XSmBZDRRPOHRowd0XMuU1G2H6cCw",
+									"value": "eyJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJpc3MiOiJ0aGFuaGJpbmgiLCJhdWQiOiJ0aGFuaGJpbmgiLCJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE3MDQwODc1OTh9.xkQc7oWW57wlTVK4Yi-2tJ5eVbeVG16nYs4vqGhaNqQCjgogJv6ZFeV0QdzKosMwOpxIQre70xiL1O17xIPWag",
 									"type": "string"
 								}
 							]
@@ -244,7 +244,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "",
+									"value": "eyJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJpc3MiOiJ0aGFuaGJpbmgiLCJhdWQiOiJ0aGFuaGJpbmgiLCJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE3MDQwODc1OTh9.xkQc7oWW57wlTVK4Yi-2tJ5eVbeVG16nYs4vqGhaNqQCjgogJv6ZFeV0QdzKosMwOpxIQre70xiL1O17xIPWag",
 									"type": "string"
 								}
 							]
@@ -326,41 +326,11 @@
 					"name": "8. Deactive",
 					"request": {
 						"auth": {
-							"type": "jwt",
-							"jwt": [
+							"type": "bearer",
+							"bearer": [
 								{
-									"key": "algorithm",
-									"value": "HS256",
-									"type": "string"
-								},
-								{
-									"key": "isSecretBase64Encoded",
-									"value": false,
-									"type": "boolean"
-								},
-								{
-									"key": "payload",
-									"value": "{}",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "headerPrefix",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "queryParamKey",
-									"value": "token",
-									"type": "string"
-								},
-								{
-									"key": "header",
-									"value": "{}",
+									"key": "token",
+									"value": "eyJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJpc3MiOiJ0aGFuaGJpbmgiLCJhdWQiOiJ0aGFuaGJpbmgiLCJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJleHAiOjE3MDQwODc1OTh9.xkQc7oWW57wlTVK4Yi-2tJ5eVbeVG16nYs4vqGhaNqQCjgogJv6ZFeV0QdzKosMwOpxIQre70xiL1O17xIPWag",
 									"type": "string"
 								}
 							]
