@@ -39,6 +39,7 @@ public class AuthConfig extends GlobalMethodSecurityConfiguration {
             // -- Swagger UI v3 (OpenAPI)
             "/v3/api-docs/**",
             "/swagger-ui/**",
+            "/actuator/**",
             Common.PATH_LOGIN,
             Common.PATH_REGISTER
     };
@@ -60,7 +61,8 @@ public class AuthConfig extends GlobalMethodSecurityConfiguration {
                         .and()
                         .addFilter(new AuthorizationFilter(authenticationManager(), userDetailsService, secret))
                         .exceptionHandling()
-                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                        .disable();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

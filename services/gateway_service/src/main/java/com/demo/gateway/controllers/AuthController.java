@@ -1,9 +1,9 @@
 package com.demo.gateway.controllers;
 
-import com.demo.gateway.dto.AuthResponseDto;
 import com.demo.gateway.dto.ResponseDto;
 import com.demo.gateway.dto.UserDto;
 import com.demo.gateway.services.AuthService;
+import com.demo.gateway.services.BookingService;
 import com.demo.grpc.proto.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -40,7 +40,10 @@ public class AuthController {
         UserMessageRequest userMessageRequest = fromUserDto(request, ActionType.LOGIN_ACTION);
         var loginResponse = authService.proceed(userMessageRequest);
 
-        return ResponseDto.toResponseEntity(loginResponse);
+        if(loginResponse.getStatus().equals(Status.SUCCESS)) {
+            return ResponseDto.toResponseEntity(loginResponse);
+        }
+        return ResponseDto.toResponseEntity(HttpStatus.BAD_REQUEST, loginResponse.getCode(), loginResponse.getDesc());
     }
 
     private UserMessageRequest fromUserDto(UserDto userDto, ActionType actionType) {

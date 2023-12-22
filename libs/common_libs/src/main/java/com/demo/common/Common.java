@@ -5,7 +5,6 @@ public class Common {
     public static final String PATH_BASE = "";
     public static final String PATH_LOGIN = "/api/v1/login";
     public static final String PATH_REGISTER = "/api/v1/register";
-
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String AUTHORIZATION_HEADER = "Authorization";
     public static final String EMPTY = "";

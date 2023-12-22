@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public interface BookingService {
-    boolean isAvailable(Integer id, LocalDate checkoutTime, LocalDate checkinTime);
+    boolean isAvailable(Integer id, LocalDate checkoutTime, LocalDate checkinTime, long bookingId);
     BookingReply createBooking(BookingMessage bookingMessage);
     BookingReply cancelBooking(Integer id);
     BookingReply updateBooking(BookingMessage bookingMessage);

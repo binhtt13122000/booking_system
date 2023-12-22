@@ -20,7 +20,7 @@ management:
 
 grpc:
   server:
-    port: 9092
+    port: ${SERVICE_PORT:9094}
 
 jwt:
   secret: 123453434sdasdzxZxZxsdasdsxXzXZXzmx>zxm.zLXXCMZXCZMXLAWDLMMXCMZXCMZX123132

@@ -17,8 +17,8 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "        WHERE room_id = :roomId  " +
             "        AND checkin_time <= :checkoutTime  " +
             "        AND checkout_time >= :checkinTime  " +
-            "        AND active = true", nativeQuery = true)
-    int countAlreadyBooked(@Param("roomId") long roomId, @Param("checkoutTime") LocalDate checkoutTime, @Param("checkinTime") LocalDate checkinTime);
+            "        AND active = true AND id != :bookingId", nativeQuery = true)
+    int countAlreadyBooked(@Param("roomId") long roomId, @Param("checkoutTime") LocalDate checkoutTime, @Param("checkinTime") LocalDate checkinTime, @Param("bookingId") long bookingId);
 
     @Query(value = "SELECT count(1)   " +
             "        FROM Bookings   " +

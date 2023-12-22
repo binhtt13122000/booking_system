@@ -12,8 +12,8 @@ public class BookingResponseDto {
     private Integer roomId;
     private String roomName;
     private Integer guestId;
-    private String guestLastName;
-    private String guestFirstName;
+    private String guestLastname;
+    private String guestFirstname;
     private String checkinTime;
     private String checkoutTime;
     private String createdAt;

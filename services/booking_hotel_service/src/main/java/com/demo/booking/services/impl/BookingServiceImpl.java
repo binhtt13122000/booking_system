@@ -31,8 +31,8 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public boolean isAvailable(Integer id, LocalDate checkoutTime, LocalDate checkinTime) {
-        return bookingRepository.countAlreadyBooked(id, checkoutTime, checkinTime) == 0;
+    public boolean isAvailable(Integer id, LocalDate checkoutTime, LocalDate checkinTime, long bookingId) {
+        return bookingRepository.countAlreadyBooked(id, checkoutTime, checkinTime, bookingId) == 0;
     }
 
     @Override
@@ -43,14 +43,14 @@ public class BookingServiceImpl implements BookingService {
             log.error("Room not found with id = {}", booking.getRoomId());
             return Mapper.convertToErrorBookingReply(ErrorMessages.ROOM_NOT_FOUND.code, ErrorMessages.ROOM_NOT_FOUND.desc);
         }
-        if(isAvailable(room.getId(), booking.getCheckoutTime().toLocalDate(), booking.getCheckinTime().toLocalDate())) {
+        if(isAvailable(room.getId(), booking.getCheckoutTime().toLocalDate(), booking.getCheckinTime().toLocalDate(), 0L)) {
             booking.setActive(true);
             booking.setRoomName(room.getName());
             booking.setCreatedAt(LocalDateTime.now());
             booking.setUpdateAt(LocalDateTime.now());
             Booking saveBooking = bookingRepository.save(booking);
             log.info("Booking is saved successfully with id = {}", saveBooking.getId());
-            return Mapper.convertToBookingReply(booking);
+            return Mapper.convertToBookingReply(saveBooking);
         }
 
         log.info("Room is booked with id = {}", room.getId());
@@ -85,7 +85,7 @@ public class BookingServiceImpl implements BookingService {
             return Mapper.convertToErrorBookingReply(ErrorMessages.BOOKING_NOT_FOUND.code, ErrorMessages.BOOKING_NOT_FOUND.desc);
         }
 
-        if(isAvailable(existBooking.getRoomId(), booking.getCheckoutTime().toLocalDate(), booking.getCheckinTime().toLocalDate())) {
+        if(isAvailable(existBooking.getRoomId(), booking.getCheckoutTime().toLocalDate(), booking.getCheckinTime().toLocalDate(), booking.getId())) {
             existBooking.setCheckinTime(booking.getCheckinTime());
             existBooking.setCheckoutTime(booking.getCheckoutTime());
             existBooking.setGuestFirstName(booking.getGuestFirstName());

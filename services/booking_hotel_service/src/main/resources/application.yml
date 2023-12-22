@@ -18,5 +18,5 @@ management:
 
 grpc:
   server:
-    port:  ${SERVICE_PORT:9091}
+    port:  ${SERVICE_PORT:9093}
 

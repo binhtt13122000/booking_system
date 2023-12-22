@@ -2,13 +2,16 @@ spring:
   application:
     name: gateway_service
 
+server:
+  port: ${SERVICE_PORT:8081}
+
 grpc:
   booking:
-    host: localhost
-    port: 9091
+    host: ${BOOKING_SERVICE_ADDRESS:localhost}
+    port: ${BOOKING_SERVICE_PORT:9093}
   auth:
-    host: localhost
-    port: 9092
+    host: ${IDENTITY_SERVICE_ADDRESS:localhost}
+    port: ${IDENTITY_SERVICE_PORT:9094}
 
 management:
   endpoint:
